@@ -1,7 +1,25 @@
 package com.daiquiriclub.daiquiriclub_ecommerce.security.Authorization;
 
+import java.util.Set;
+
 public enum Rol {
-    ADMINISTRADOR,
-    VENDEDOR,
-    REPARTIDOR
+    ADMINISTRADOR(Set.of(
+
+            Permission.PRODUCT_READ,
+            Permission.PRODUCT_READ_ACTIVE,
+            Permission.PRODUCT_CREATE,
+            Permission.PRODUCT_UPDATE,
+            Permission.PRODUCT_DELETE
+    )),
+    VENDEDOR(Set.of()),
+    REPARTIDOR(Set.of());
+
+    private final Set<Permission> permissions;
+
+    Rol(Set<Permission> permissions) {
+        this.permissions = permissions;
+    }
+    public Set<Permission> getPermissions(){
+        return permissions;
+    }
 }

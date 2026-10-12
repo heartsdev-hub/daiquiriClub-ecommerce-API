@@ -5,3 +5,17 @@ spring:
     name: daiquiriclub-ecommerce
   profiles:
     active: ${SPRING_PROFILES_ACTIVE:dev}
+
+security:
+  jwt:
+    secret: ${JWT_SECRET:VGhpcy1pcy1hLXZlcnktc2VjdXJlLWp3dC1zZWNyZXQta2V5LWZvci1oczI1Ng==}
+    expiration: ${JWT_EXPIRATION:3600000}
+
+app:
+  aws:
+    s3:
+      region: ${AWS_REGION:us-east-1}
+      bucket: ${AWS_S3_BUCKET:daiquiriclub-ecommerce-2026}
+      default-profile-key: defaults/profile-default.webp
+      presigned-url-duration: 15m
+      max-file-size: 5MB
