@@ -1,4 +1,4 @@
-package com.daiquiriclub.daiquiriclub_ecommerce.modules.Auth.dto;
+package com.daiquiriclub.daiquiriclub_ecommerce.modules.Auth.dto.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

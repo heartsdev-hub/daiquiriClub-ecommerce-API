@@ -1,8 +1,8 @@
 package com.daiquiriclub.daiquiriclub_ecommerce.modules.Auth.controller;
 
 import com.daiquiriclub.daiquiriclub_ecommerce.common.response.ApiResult;
-import com.daiquiriclub.daiquiriclub_ecommerce.modules.Auth.dto.AuthRequest;
-import com.daiquiriclub.daiquiriclub_ecommerce.modules.Auth.dto.AuthResponse;
+import com.daiquiriclub.daiquiriclub_ecommerce.modules.Auth.dto.request.AuthRequest;
+import com.daiquiriclub.daiquiriclub_ecommerce.modules.Auth.dto.response.AuthResponse;
 import com.daiquiriclub.daiquiriclub_ecommerce.modules.Auth.service.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;

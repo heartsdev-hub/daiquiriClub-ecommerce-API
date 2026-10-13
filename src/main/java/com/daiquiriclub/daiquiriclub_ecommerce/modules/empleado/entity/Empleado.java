@@ -34,7 +34,7 @@ public class Empleado {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     @Column(nullable = false)
-    private String nombres;
+    private String nombre;
     @Column(nullable = false)
     private String apellidos;
     @Enumerated(EnumType.STRING)

@@ -2,8 +2,8 @@ package com.daiquiriclub.daiquiriclub_ecommerce.modules.Auth.service;
 
 import com.daiquiriclub.daiquiriclub_ecommerce.common.exception.UnauthorizedException;
 import com.daiquiriclub.daiquiriclub_ecommerce.common.response.ApiResult;
-import com.daiquiriclub.daiquiriclub_ecommerce.modules.Auth.dto.AuthRequest;
-import com.daiquiriclub.daiquiriclub_ecommerce.modules.Auth.dto.AuthResponse;
+import com.daiquiriclub.daiquiriclub_ecommerce.modules.Auth.dto.request.AuthRequest;
+import com.daiquiriclub.daiquiriclub_ecommerce.modules.Auth.dto.response.AuthResponse;
 import com.daiquiriclub.daiquiriclub_ecommerce.security.jwt.JwtService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
