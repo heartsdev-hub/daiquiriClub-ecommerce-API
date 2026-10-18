@@ -8,13 +8,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.validator.constraints.UUID;
+
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @AllArgsConstructor
 @Getter
@@ -28,17 +29,20 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String nombre;
-    private String apellido;
+    private String apellidos;
+    @Enumerated(EnumType.STRING)
     private TipoDocumento tipoDocumento;
     @Column(unique = true)
     private String numDocumento;
+    @Enumerated(EnumType.STRING)
+    private TipoSexo tipoSexo;
     private LocalDate fechaNacimiento;
     private Integer edad;
-    private TipoSexo tipoSexo;
     private String numCelular;
     private String segundoNumCelular;
-    private String fotoPerfil;
-    private boolean active;
+    @Column(name = "foto_perfil_key",length = 500)
+    private String fotoPerfilKey;
+    private boolean active = true;
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(
             name = "usuario_id",

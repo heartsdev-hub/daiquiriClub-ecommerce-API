@@ -3,21 +3,16 @@ package com.daiquiriclub.daiquiriclub_ecommerce.modules.empleado.entity;
 import com.daiquiriclub.daiquiriclub_ecommerce.common.enums.TipoDocumento;
 import com.daiquiriclub.daiquiriclub_ecommerce.common.enums.TipoSexo;
 import com.daiquiriclub.daiquiriclub_ecommerce.modules.usuario.entity.Usuario;
-import com.daiquiriclub.daiquiriclub_ecommerce.security.Authorization.Permission;
-import com.daiquiriclub.daiquiriclub_ecommerce.security.Authorization.Rol;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.jspecify.annotations.Nullable;
+
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;

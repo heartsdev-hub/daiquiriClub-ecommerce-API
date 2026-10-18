@@ -86,7 +86,8 @@ public class EmpleadoService {
                 s3Properties.defaultProfileKey(),
                 s3Properties.presignedUrlDuration()
         );
+        empleadoRepository.save(empleado);
         EmpleadoResponse empleadoResponse = empleadoMapper.toEmpleadoResponse(empleado,fotoUrl);
-        return new ApiResult<>(true,"Empleado crado correctamente", empleadoResponse);
+        return new ApiResult<>(true,"Empleado creado correctamente", empleadoResponse);
     }
 }

@@ -12,6 +12,7 @@ public enum Rol {
             Permission.PRODUCT_DELETE
     )),
     VENDEDOR(Set.of()),
+    CLIENTE(Set.of()),
     REPARTIDOR(Set.of());
 
     private final Set<Permission> permissions;

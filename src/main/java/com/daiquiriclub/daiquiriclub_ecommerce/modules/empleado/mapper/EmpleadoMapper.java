@@ -17,7 +17,7 @@ public interface EmpleadoMapper {
     @Mapping(target = "updatedAt", ignore = true)
     Empleado toEmpleado(EmpleadoCreateRequest empleadoCreateRequest);
 
-    @Mapping(target = "email", source = "empleadousuario.email")
+    @Mapping(target = "email", source = "empleado.usuario.email")
     @Mapping(target = "authProvider", source = "empleado.usuario.authProvider")
     @Mapping(target = "providerId", source = "empleado.usuario.providerId")
     @Mapping(target = "roles", source = "empleado.usuario.roles")
