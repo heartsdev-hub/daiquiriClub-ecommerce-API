@@ -37,7 +37,7 @@ public class Usuario implements UserDetails {
     private AuthProvider authProvider;
     @Column(unique = true)
     private String providerId;
-    private boolean active;
+    private boolean active = true;
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(
             name = "usuario_rol",

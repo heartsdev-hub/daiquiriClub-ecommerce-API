@@ -10,6 +10,7 @@ import com.daiquiriclub.daiquiriclub_ecommerce.modules.categoria.dto.response.Ca
 import com.daiquiriclub.daiquiriclub_ecommerce.modules.categoria.entity.Categoria;
 import com.daiquiriclub.daiquiriclub_ecommerce.modules.categoria.mapper.CategoriaMapper;
 import com.daiquiriclub.daiquiriclub_ecommerce.modules.categoria.repository.CategoriaRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class CategoriaService {
         this.categoriaRepository = categoriaRepository;
         this.categoriaMapper = categoriaMapper;
     }
+    @PreAuthorize("hasAuthority('CATEGORIA_READ')")
     public ApiResult<List<CategoriaResponse>> listaCategorias(){
         List<CategoriaResponse> categorias = categoriaRepository.findAll().stream().map(
                 categoriaMapper::toCategoriaResponse
@@ -34,6 +36,7 @@ public class CategoriaService {
                 categorias
         );
     }
+    @PreAuthorize("hasAuthority('CATEGORIA_READ_ACTIVE')")
     public ApiResult<List<CategoriaResponse>> listaCateogirasActivas(){
         List<CategoriaResponse> categorias = categoriaRepository.obtenerCategoriasActivas()
                 .stream().map(
@@ -45,11 +48,12 @@ public class CategoriaService {
                 categorias
         );
     }
+    @PreAuthorize("hasAuthority('CATEGORIA_READ')")
     public ApiResult<CategoriaResponse> findByIdCategoria(String id){
         UUID uuid = parseUUID(id);
         Categoria categoria = categoriaRepository.findById(uuid).orElseThrow(()->new ResourceNotFoundException("No se encontró la categoria"));
         return new ApiResult<>(true,"Categoria encontrada",categoriaMapper.toCategoriaResponse(categoria));
-    }
+    }@PreAuthorize("hasAuthority('CATEGORIA_CREATE')")
     public ApiResult<CategoriaResponse> crearCategoria(CategoriaCreateRequest categoriaCreateRequest){
         if(categoriaRepository.existsByNombre(categoriaCreateRequest.nombre())){
             throw new ConflictException("La categoria ya existe.");
@@ -62,6 +66,7 @@ public class CategoriaService {
                 categoriaMapper.toCategoriaResponse(categoriaGuardado)
         );
     }
+    @PreAuthorize("hasAuthority('CATEGORIA_UPDATE')")
     public ApiResult<CategoriaResponse> updateCategoria(String id, CategoriaUpdateRequest categoriaUpdateRequest){
         UUID uuid = parseUUID(id);
         if(categoriaRepository.existsByNombre(categoriaUpdateRequest.nombre())){
@@ -69,12 +74,14 @@ public class CategoriaService {
         }
         Categoria categoria = categoriaRepository.findById(uuid).orElseThrow(()-> new ResourceNotFoundException("La categoria no se encontró"));
         categoriaMapper.updatedCategori(categoriaUpdateRequest,categoria);
+        categoriaRepository.save(categoria);
         return new ApiResult<>(
                 true,
                 "Se ha actualizado la categoria",
                 categoriaMapper.toCategoriaResponse(categoria)
         );
     }
+    @PreAuthorize("hasAuthority('CATEGORIA_DELETE')")
     public ApiResult<Void> desactivarCategoria(String id){
         UUID uuid = parseUUID(id);
         Categoria categoria = categoriaRepository.findById(uuid).orElseThrow(()-> new ResourceNotFoundException("No se encontro la categoria"));
