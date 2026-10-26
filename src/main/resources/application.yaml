@@ -32,3 +32,8 @@ app:
       default-profile-key: defaults/profile-default.webp
       presigned-url-duration: 15m
       max-file-size: 5MB
+
+cloudinary:
+  cloud-name: ${CLOUDINARY_CLOUD_NAME}
+  api-key: ${CLOUDINARY_API_KEY}
+  api-secret: ${CLOUDINARY_API_SECRET}

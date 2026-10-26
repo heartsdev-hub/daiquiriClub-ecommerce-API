@@ -26,6 +26,7 @@ public class Marca {
     private UUID id;
     @Column(nullable = false)
     private String nombre;
+    @Column(unique = true)
     private String slug;
     private String logoUrl;
     @Enumerated(EnumType.STRING)

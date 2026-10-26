@@ -15,7 +15,13 @@ public enum Rol {
             Permission.CATEGORIA_READ_ACTIVE,
             Permission.CATEGORIA_CREATE,
             Permission.CATEGORIA_UPDATE,
-            Permission.CATEGORIA_DELETE
+            Permission.CATEGORIA_DELETE,
+
+            Permission.MARCA_READ,
+            Permission.MARCA_READ_ACTIVE,
+            Permission.MARCA_CREATE,
+            Permission.MARCA_UPDATE,
+            Permission.MARCA_DELETE
     )),
     VENDEDOR(Set.of()),
     CLIENTE(Set.of()),

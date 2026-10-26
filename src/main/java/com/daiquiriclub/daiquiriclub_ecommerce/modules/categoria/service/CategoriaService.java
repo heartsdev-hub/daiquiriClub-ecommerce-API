@@ -53,7 +53,8 @@ public class CategoriaService {
         UUID uuid = parseUUID(id);
         Categoria categoria = categoriaRepository.findById(uuid).orElseThrow(()->new ResourceNotFoundException("No se encontró la categoria"));
         return new ApiResult<>(true,"Categoria encontrada",categoriaMapper.toCategoriaResponse(categoria));
-    }@PreAuthorize("hasAuthority('CATEGORIA_CREATE')")
+    }
+    @PreAuthorize("hasAuthority('CATEGORIA_CREATE')")
     public ApiResult<CategoriaResponse> crearCategoria(CategoriaCreateRequest categoriaCreateRequest){
         if(categoriaRepository.existsByNombre(categoriaCreateRequest.nombre())){
             throw new ConflictException("La categoria ya existe.");
