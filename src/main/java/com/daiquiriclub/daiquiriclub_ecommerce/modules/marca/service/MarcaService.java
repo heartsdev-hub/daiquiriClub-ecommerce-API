@@ -112,6 +112,16 @@ public class MarcaService {
                 "Se ha actualizado el logo",
                 marcaMapper.toMarcaResponse(marcaSv));
     }
+    @PreAuthorize("hasAuthority('MARCA_DELETE')")
+    public ApiResult<Void> desactivarMarca(String id){
+        UUID uuid = parseID(id);
+        Marca marca = marcaRepository.findById(uuid).orElseThrow(
+                ()-> new ResourceNotFoundException("No se encontroó la marca")
+        );
+        marca.setActive(false);
+        marcaRepository.save(marca);
+        return new ApiResult<>(true,"La marca se ha desactivado correctamente",null);
+    }
     private UUID parseID(String id){
         try{
             return UUID.fromString(id);

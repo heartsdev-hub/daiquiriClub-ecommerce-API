@@ -41,7 +41,7 @@ public class CategoriaController {
         return ResponseEntity.ok(categoriaService.updateCategoria(id,categoriaUpdateRequest));
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity<ApiResult<Void>> desactivarCategori(@PathVariable String id){
+    public ResponseEntity<ApiResult<Void>> desactivarCategoria(@PathVariable String id){
         return ResponseEntity.ok(categoriaService.desactivarCategoria(id));
     }
 }

@@ -2,6 +2,7 @@ package com.daiquiriclub.daiquiriclub_ecommerce.modules.marca.Controller;
 
 import com.daiquiriclub.daiquiriclub_ecommerce.common.response.ApiResult;
 import com.daiquiriclub.daiquiriclub_ecommerce.modules.marca.dto.request.MarcaCreateRequest;
+import com.daiquiriclub.daiquiriclub_ecommerce.modules.marca.dto.request.MarcaUpdateRequest;
 import com.daiquiriclub.daiquiriclub_ecommerce.modules.marca.dto.response.MarcaResponse;
 import com.daiquiriclub.daiquiriclub_ecommerce.modules.marca.service.MarcaService;
 import jakarta.validation.Valid;
@@ -10,7 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -36,5 +39,17 @@ public class MarcaController {
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ApiResult<MarcaResponse>>createMarca(@ModelAttribute @Valid MarcaCreateRequest marcaCreateRequest){
         return ResponseEntity.status(HttpStatus.CREATED).body(marcaService.createMarca(marcaCreateRequest));
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<ApiResult<MarcaResponse>> updateMarca(@PathVariable String id, @RequestBody @Valid MarcaUpdateRequest marcaUpdateRequest){
+        return ResponseEntity.ok(marcaService.actualizarMarca(id,marcaUpdateRequest));
+    }
+    @PatchMapping(value = "/{id}/logo",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<ApiResult<MarcaResponse>> actualizarLogo(@PathVariable String id, @RequestParam("logo")MultipartFile logo) throws IOException {
+        return ResponseEntity.ok(marcaService.actualizarlOGO(id,logo));
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ApiResult<Void>> desactivarMarca(@PathVariable String id){
+        return ResponseEntity.ok(marcaService.desactivarMarca(id));
     }
 }
